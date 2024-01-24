@@ -9,6 +9,12 @@ adminRouter.get("/",async(req,res)=>{
     const my_Blogs=await BlogModel.find({creatorID:userID})
     res.send({my_Blogs})
 })
+adminRouter.get("/:id",async(req,res)=>{
+    // const {userID}=req.body
+    const{id}=req.params
+    const required_Blog=await BlogModel.findOne({_id:id})
+    res.send({required_Blog})
+})
 
 adminRouter.post("/create",async(req,res)=>{
     const{heading,content,tag,creatorID,price,creatorName,image,userID}=req.body
