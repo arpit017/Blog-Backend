@@ -37,7 +37,7 @@ userRouter.post("/login", async (req, res) => {
     const result = bcrypt.compareSync(password, hased_password);
     if (result) {
       var token = jwt.sign({ userID: user._id }, process.env.SECRET);
-      res.send({ msg: "logged in", token });
+      res.send({ msg: user.name, token });
     } else {
       res.send("incorrect password");
     }
